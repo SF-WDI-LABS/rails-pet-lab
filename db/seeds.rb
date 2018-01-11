@@ -2,6 +2,7 @@
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 
 # Destroy everything to rebuild
+Appointment.destroy_all
 Pet.destroy_all
 Owner.destroy_all
 
@@ -31,18 +32,30 @@ def random_date(min_days_from_now, max_days_from_now)
 end
 
 # Pets
-# def random_pet_breed
-#   ["dog", "cat", "reptile", "rabbit", "rodent", "rock", "amphibian", "giant robot", "fish"].sample
-# end
+def random_pet_breed
+  ["dog", "cat", "reptile", "rabbit", "rodent", "rock", "amphibian", "giant robot", "fish"].sample
+end
 
-# pets_data = []
-# 6.times do
-#   pets_data << {
-#     name: FFaker::Name.first_name,
-#     breed: random_pet_breed,
-#     # date_of_birth: random_date(-2000.0, -3.0) #between 2000 and 3 days ago
-#     owner: owners.sample
-#   }
-# end
-# pets = Pet.create(pets_data)
+pets_data = []
+6.times do
+  pets_data << {
+    name: FFaker::Name.first_name,
+    breed: random_pet_breed,
+    # date_of_birth: random_date(-2000.0, -3.0) #between 2000 and 3 days ago
+    owner: owners.sample
+  }
+end
+
+pets = Pet.create(pets_data)
+
+appointments_data = []
+6.times do
+  appointments_data << {
+    time: random_date(1, 5),
+    reason: 'Just because',
+    veterinarian: FFaker::Name.first_name,
+    pet: pets.sample
+  }
+end
+appointments = Appointment.create(appointments_data)
 
