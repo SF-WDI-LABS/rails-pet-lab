@@ -1,14 +1,3 @@
 <h1>Show Pet</h1>
 <hr>
 <p><strong>Name:</strong> <%= @pet.name %></p>
-<p><strong>Breed:</strong> <%= @pet.breed %></p>
-
-<% @pet.appointments.each do |appt| %>
-  <li>
-    <%= appt.time %>
-    <%= appt.reason %>
-    <%= appt.veterinarian %>
-  </li>
-<% end %>
-
-<%= link_to 'New appointment', new_pet_appointment_path(@pet) %>
